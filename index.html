@@ -7,10 +7,11 @@
 <body>
   <script src="https://unpkg.com/vue"></script>
   <div id="app">
-    <h1>Vue properties and methods</h1>
+    <h1><span v-html="vueHomeURL"></span> data binding</h1>
     <ul>
       <li>name : {{name}}</li>
-      <li>greet: {{greet('Tom')}}</li>
+      <li>HomePage : <a v-bind:href="homeURL">go to...</a></li>
+      <li>Github page : <a :href="github">go to...</a></li>
     </ul>
   </div>
   <script type="text/javascript" src="app.js"></script>
