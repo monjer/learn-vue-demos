@@ -6,16 +6,13 @@
 </head>
 <body>
   <script src="https://unpkg.com/vue"></script>
-  <div id="app">{{message}}</div>
-  <script type="text/javascript">
-    var app = new Vue({
-      el: '#app',
-      data:{
-        message: 'Hello world'
-      }
-    });
-    // change the message value and see the DOM
-    // app.message = "Some new value"
-  </script>
+  <div id="app">
+    <h1>Vue properties and methods</h1>
+    <ul>
+      <li>name : {{name}}</li>
+      <li>greet: {{greet('Tom')}}</li>
+    </ul>
+  </div>
+  <script type="text/javascript" src="app.js"></script>
 </body>
 </html>
