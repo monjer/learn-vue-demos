@@ -8,12 +8,14 @@
   <script src="https://unpkg.com/vue"></script>
   <div id="app">{{message}}</div>
   <script type="text/javascript">
-    var vue = new Vue({
+    var app = new Vue({
       el: '#app',
       data:{
         message: 'Hello world'
       }
-    })
+    });
+    // change the message value and see the DOM
+    // app.message = "Some new value"
   </script>
 </body>
 </html>
