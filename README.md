@@ -1,1 +1,1 @@
-### Vue.js Hello World
+### Basic Vue  property and methods
