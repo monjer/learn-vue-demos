@@ -1,1 +1,1 @@
-### Basic Vue  property and methods
+### Vue data binding
