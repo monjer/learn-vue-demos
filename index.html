@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js computed properties</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>Vue computed properties</h1>
+    <p>
+      valueA : <span>{{valueA}}</span>
+      <button v-on:click="increase(true)">increase</button>
+      <button v-on:click="idecrease(true)">decrease</button>
+    </p>
+    <p>
+      valueB : <span>{{valueB}}</span>
+      <button v-on:click="increase(false)">increase</button>
+      <button v-on:click="idecrease(false)">decrease</button>
+    </p>
+    <p>total : {{total}}</p>
+  </div>
+  <script src="https://unpkg.com/vue"></script>
+  <script type="text/javascript">
+  var app = new Vue({
+    el: '#app',
+    data: {
+      valueA: 0,
+      valueB: 0
+    },
+    methods: {
+      increase: function(isValueA) {
+        isValueA ? this.valueA++ : this.valueB++;
+      },
+      idecrease: function(isValueA) {
+        isValueA ? this.valueA-- : this.valueB--;
+      }
+    },
+    computed: {
+      total: function() {
+        return this.valueA + this.valueB;
+      }
+    }
+  });
+  </script>
+</body>
+
+</html>
