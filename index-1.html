@@ -9,8 +9,8 @@
     <h1>Vue Event</h1>
    <div>Counter : {{counter}}</div>
    <div>
-     <button v-on:click="increase">Increase</button>
-     <button v-on:click="decrease">Decrease</button>
+     <button v-on:click="counter++">Increase</button>
+     <button v-on:click="counter--">Decrease</button>
    </div>
   </div>
   <script src="https://unpkg.com/vue"></script>
@@ -19,14 +19,6 @@
       el: '#app',
       data: {
         counter:0
-      },
-      methods:{
-        increase: function(name){
-          this.counter++;
-        },
-        decrease: function(){
-          this.counter--;
-        }
       }
     });
   </script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js  Event </title>
+  <style type="text/css">
+    .box{
+      padding:10px;
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>Vue mouse Event</h1>
+   <div>
+      <div class="box" v-on:contextmenu.prevent="rightClickHandler">Right click here</div>
+   </div>
+  </div>
+  <script src="https://unpkg.com/vue"></script>
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      methods: {
+        rightClickHandler: function(){
+          console.log('right click handler')
+        }
+      }
+    });
+  </script>
+</body>
+</html>

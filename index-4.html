@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js  Event </title>
+</head>
+<body>
+  <div id="app">
+    <h1>Vue keyboard Event</h1>
+   <div>
+     <input type="text" name="" v-on:keyup.enter="submitForm">
+   </div>
+  </div>
+  <script src="https://unpkg.com/vue"></script>
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      methods: {
+        submitForm: function(){
+          console.log('form submit')
+        }
+      }
+    });
+  </script>
+</body>
+</html>
