@@ -1,83 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <title>Vue.js Event </title>
-  <style type="text/css">
-  .box {
-    background-color: #f0f0f0;
-    padding:5px;
-  }
-  .wrap{
-    border:1px solid ;
-    padding:40px;
-  }
-  .title{
-    font-weight: bold;
-  }
-  </style>
+  <title>Vue.js style bind </title>
 </head>
-
 <body>
-  <div id="app">
-    <h1>Vue Event Modifier</h1>
-    <div>
-      <p class="title">Prevent default</p>
-      <a href="http://vuejs.org" v-on:click.prevent>Vuejs link</a>
-    </div>
-    <div v-on:click="clickHandler">
-      <p class="title">Stop event bubble</p>
-      <div class="box" v-on:click.stop>
-        Click here , you will never see the log in the browser console.
-      </div>
-    </div>
-    <div>
-      <p class="title">Event once</p>
-      <div class="box" v-on:click.once="onceClickHandler">
-        Click here , you can noly see the log once.
-      </div>
-    </div>
-    <div>
-      <p class="title">Event capture</p>
-      <div v-on:click="parentClickHandler">
-        <div class="box" v-on:click.capture="captureClickHandler($event)">
-          Click here , see the event type in the browser console.
-        </div>
-      </div>
-    </div>
-     <div>
-      <p class="title">Event self</p>
-      <div class="wrap" v-on:click.self="selClickTestHandler">
-        <div class="box">
-          Click here , will not trigger parent click handler.
-        </div>
-      </div>
-    </div>
+<div id="app">
+  <h1>Vue style bind</h1>
+  <div>
+    <button v-bind:style="styleObj">Button</button>
+   </div>
   </div>
-  <script src="https://unpkg.com/vue"></script>
-  <script type="text/javascript">
+<script src="https://unpkg.com/vue"></script>
+<script type="text/javascript">
   var app = new Vue({
     el: '#app',
-    methods: {
-      clickHandler: function() {
-        console.log('This handler won\'t trigger');
-      },
-      onceClickHandler: function() {
-        console.log('This handler just trigger once');
-      },
-      captureClickHandler: function(event) {
-        console.log('I am first happen ');
-      },
-      parentClickHandler: function() {
-        console.log('I am second happen ');
-      },
-      selClickTestHandler: function(){
-        console.log('Event self test ');
+    data:{
+      styleObj:{
+        color: 'blue',
+        fontSize: '16px'
       }
     }
   });
-  </script>
+</script>
 </body>
-
 </html>

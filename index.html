@@ -2,30 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Vue.js  Event </title>
+  <title>Vue.js  class bind </title>
+  <style type="text/css">
+    .active{
+      color: red;
+    }
+  </style>
 </head>
 <body>
   <div id="app">
-    <h1>Vue Event</h1>
-   <div>Counter : {{counter}}</div>
-   <div>
-     <button v-on:click="increase">Increase</button>
-     <button v-on:click="decrease">Decrease</button>
-   </div>
-  </div>
+    <h1>Vue class bind</h1>
+    <div>
+      <button v-bind:class="{active: isActive}" v-on:click="toggle">Button</button>
+     </div>
+    </div>
   <script src="https://unpkg.com/vue"></script>
   <script type="text/javascript">
     var app = new Vue({
       el: '#app',
       data: {
-        counter:0
+        isActive:true
       },
       methods:{
-        increase: function(name){
-          this.counter++;
-        },
-        decrease: function(){
-          this.counter--;
+        toggle: function(){
+          this.isActive = !this.isActive;
         }
       }
     });

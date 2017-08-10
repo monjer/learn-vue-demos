@@ -2,31 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Vue.js  Event </title>
+  <title>Vue.js style bind </title>
 </head>
 <body>
-  <div id="app">
-    <h1>Vue Event</h1>
-   <div>Counter : {{counter}}</div>
-   <div>
-     <button id="increase-btn" v-on:click="buttonClick($event)">Increase</button>
-     <button id="decrease-btn" v-on:click="buttonClick($event)">Decrease</button>
+<div id="app">
+  <h1>Vue style bind</h1>
+  <div>
+    <button v-bind:style="{color: activeColor , fontSize: fontSize}">Button</button>
    </div>
   </div>
-  <script src="https://unpkg.com/vue"></script>
-  <script type="text/javascript">
-    var app = new Vue({
-      el: '#app',
-      data: {
-        counter:0
-      },
-      methods:{
-        buttonClick: function(event){
-          var button = event.target;
-          button.id == 'increase-btn' ?  this.counter++ : this.counter--;
-        }
-      }
-    });
-  </script>
+<script src="https://unpkg.com/vue"></script>
+<script type="text/javascript">
+  var app = new Vue({
+    el: '#app',
+    data:{
+      activeColor: 'blue',
+      fontSize: '16px'
+    }
+  });
+</script>
 </body>
 </html>
