@@ -1,1 +1,1 @@
-# Vue two way binding
+# Vue computed properties
