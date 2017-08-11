@@ -1,1 +1,1 @@
-# Vue form control data binding
+# Vue computed properties
