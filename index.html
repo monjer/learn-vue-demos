@@ -1,47 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Vue.js computed properties</title>
+  <title>Vue.js form control data binding</title>
+  <style>
+    form .form-item{
+      margin-bottom: 10px;
+    }
+    form .form-label{
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    form input[type=text],
+    form input[type=password],
+    form textarea{
+      padding:5px 10px;
+      border: 1px solid #ccc;
+      outline :none;
+    }
+    form .radio,
+    form .checkbox{
+      margin-left: 5px;
+
+    }
+    form .radio:first-child,
+    form .checkbox:first-child{
+      margin-left: 0;
+    }
+    form .radio input,
+    form .checkbox input{
+      margin:0 4px 0 0;
+    }
+  </style>
 </head>
 
 <body>
   <div id="app">
-    <h1>Vue computed properties</h1>
-    <p>
-      valueA : <span>{{valueA}}</span>
-      <button v-on:click="increase(true)">increase</button>
-      <button v-on:click="idecrease(true)">decrease</button>
-    </p>
-    <p>
-      valueB : <span>{{valueB}}</span>
-      <button v-on:click="increase(false)">increase</button>
-      <button v-on:click="idecrease(false)">decrease</button>
-    </p>
-    <p>total : {{total}}</p>
+    <h1>Vue form control data binding</h1>
+    <h3>Person info</h3>
+    <div>
+      <form v-on:change="log">
+        <div class="form-item">
+          <label class="form-label">Name : </label>
+          <input type="text" name="name" v-model.trim="person.name">
+        </div>
+        <div class="form-item">
+          <label class="form-label">Age : </label>
+          <input type="text" name="age" v-model.number="person.age">
+        </div>
+        <div class="form-item">
+          <label class="form-label">Introduction : </label>
+          <textarea v-model="person.introduction"></textarea>
+        </div>
+        <div class="form-item">
+          <label class="form-label">Language :</label>
+          <div>
+            <label class="checkbox">
+              <input type="checkbox" name="" v-model="person.languages" value="HTML">HTML</label>
+            <label class="checkbox">
+              <input type="checkbox" name="" v-model="person.languages" value="CSS">CSS</label>
+            <label class="checkbox">
+              <input type="checkbox" name="" v-model="person.languages" value="JavaScript">JavaScript</label>
+            <label class="checkbox">
+              <input type="checkbox" name="" v-model="person.languages" value="Node">Node</label>
+            <label class="checkbox">
+              <input type="checkbox" name="" v-model="person.languages" value="PHP">PHP</label>
+          </div>
+        </div>
+        <div class="form-item">
+          <label class="form-label">Sex : </label>
+          <div>
+            <label class="radio">
+              <input type="radio" value="man" checked v-model="person.sex">man
+            </label>
+            <label class="radio">
+              <input type="radio" value="woman" v-model="person.sex">woman
+            </label>
+          </div>
+        </div>
+        <div class="form-item">
+          <label class="form-label">Title : </label>
+          <select v-model="person.title">
+            <option disabled value="">Choose</option>
+            <option v-for="(title , index) in titles" 
+                    v-bind:value="title"
+                    >{{title}}</option>
+          </select>
+        </div>
+      </form>
+    </div>
   </div>
   <script src="https://unpkg.com/vue"></script>
   <script type="text/javascript">
-  var app = new Vue({
-    el: '#app',
-    data: {
-      valueA: 0,
-      valueB: 0
-    },
-    methods: {
-      increase: function(isValueA) {
-        isValueA ? this.valueA++ : this.valueB++;
+    var app = new Vue({
+      el: '#app',
+      data: {
+        titles: ['Junior Engineer', 'Intermediate Engineer', 'Senior Engineer'],
+        person: {
+          name: '',
+          age:'',
+          introduction: '',
+          languages: [],
+          sex: 'man',
+          title: '',
+        }
       },
-      idecrease: function(isValueA) {
-        isValueA ? this.valueA-- : this.valueB--;
+      methods:{
+        log: function(){
+          var result = JSON.stringify(this.person)
+          console.log(result)
+        }
       }
-    },
-    computed: {
-      total: function() {
-        return this.valueA + this.valueB;
-      }
-    }
-  });
+    });
   </script>
 </body>
+
 </html>
