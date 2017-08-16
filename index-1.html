@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js Component Local Regiester</title>
+</head>
+
+<body>
+  <h1>Vue Component Local Regiester</h1>
+  <div id="app">
+    <div>
+      <div>Clock : </div>
+      <Clock></Clock>
+    </div>
+  </div>
+  <script src="https://unpkg.com/vue"></script>
+  <script type="text/javascript">
+  var app = new Vue({
+    el: '#app',
+    components: {
+      'Clock': {
+        template: '<div>Date Time : {{time}}</div>',
+        data: function() {
+          return {
+            time: '',
+            timer: -1
+          };
+        },
+        methods: {
+
+          stop: function() {
+            clearInterval(this.timer)
+          },
+
+          start: function() {
+            var self = this;
+
+            function format(num) { return ('0' + num).slice(-2) }
+            this.timer = setInterval(function() {
+              var date = new Date();
+              var dateTime = date.getFullYear() + '-' +
+                format(date.getMonth() + 1) + '-' +
+                format(date.getDate()) + ' ' +
+                format(date.getHours()) + ':' +
+                format(date.getMinutes()) + ':' +
+                format(date.getSeconds());
+              self.time = dateTime;
+            }, 1000)
+          }
+        },
+
+        created: function() {
+          this.start();
+        }
+      }
+    }
+  });
+  </script>
+</body>
+
+</html>

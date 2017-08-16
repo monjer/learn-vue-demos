@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js Component none props</title>
+  <style type="text/css">
+    .header{
+      border: 1px solid #ccc;
+      font-size: 20px;
+      line-height: 1.4;
+    }
+    .light-theme{
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Vue.js Component none props</h1>
+  <div id="app"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
+  <script type="text/javascript">
+  Vue.component('Header', {
+    template: '<div data-app-header="0"  id="app-header" class="header">\
+              <div>Vue Application</div>\
+            </div>',
+    props: ['counter']
+  });
+  var app = new Vue({
+    el: '#app',
+    template: '<div>\
+                <Header data-app-header="1" class="light-theme" style="border-radius: 3px;"></Header>\
+              </div>'
+  });
+  </script>
+</body>
+
+</html>

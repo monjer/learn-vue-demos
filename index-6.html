@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js Component event bus </title>
+</head>
+
+<body>
+  <h1>Vue.js Component event bus</h1>
+  <div id="app"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
+  <script type="text/javascript">
+  // define the event bus single object
+  var bus = new Vue();
+
+  // Header component
+  Vue.component('Header', {
+    template: '<div>\
+                  <div><h2>{{appTitle}}</h2></div><hr/>\
+                </div>',
+    props: ['title'],
+
+    data: function(){
+      return {
+        appTitle: this.title
+      }
+    },
+    created:function() {
+      var self = this;
+      bus.$on('titleChanged', function(newTitle) {
+        self.appTitle = newTitle;
+      })
+    }
+  });
+  // MainPnael component
+  Vue.component('MainPanel', {
+    template: '<div>\
+                <h3>New app title : </h3>\
+                <div>\
+                  <input ref="iptEl" type="text" v-on:keyup.enter.trim="keyupHandler" v-bind:value="appTitle"/>\
+                </div>\
+                <p style="color: #888; font-size: 12px;">Enter submit</p>\
+              </div>',
+
+    props:['title'],
+
+    data: function(){
+      return {
+        appTitle: this.title
+      }
+    },
+    methods: {
+      keyupHandler: function($e){
+        var val =this.$refs.iptEl.value ;
+        if(val){
+          bus.$emit('titleChanged' , val);
+        }
+      }
+    }
+  });
+  // Application
+  var app = new Vue({
+    el: '#app',
+    template: '<div>\
+                  <Header v-bind:title="title"></Header>\
+                  <MainPanel v-bind:title="title"></MainPanel>\
+              </div>',
+    data: {
+      title: 'Vue appliation'
+    },
+    methods: {
+      counterChangeHandler: function(newCounter) {
+        this.counter.number = newCounter;
+      }
+    }
+  });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js slot</title>
+</head>
+
+<body>
+  <h1>Vue.js slot</h1>
+  <div id="app"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
+  <script type="text/javascript">
+  Vue.component('Header', {
+    template: '<div class="app-header">\
+                  <slot></slot>\
+              </div>',
+  });
+
+  var app = new Vue({
+    el: '#app',
+    template: `<div class="application">
+                  <Header>
+                    <h2>Vue app title</h2>
+                  </Header>
+              </div>`
+  });
+  </script>
+
+</body>
+
+</html>

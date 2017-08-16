@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js slot</title>
+  <style type="text/css">
+  .app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  </style>
+</head>
+
+<body>
+  <h1>Vue.js name slot</h1>
+  <div id="app"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
+  <script type="text/javascript">
+  Vue.component('Header', {
+    template: '<div class="app-header">\
+                  <div class="header-left">\
+                    <slot name="header-left"></slot>\
+                  </div>\
+                  <div class="header-right">\
+                    <slot name="header-right"></slot>\
+                  </div>\
+              </div>',
+  });
+
+  var app = new Vue({
+    el: '#app',
+    template: `<div class="application">
+                  <Header>
+                  <div slot="header-left">
+                    <h2>Vue app title</h2>
+                  </div>
+                  <div slot="header-right">
+                    <button>Sign in</button>
+                    <button>Sign up</button>
+                  </div>
+                  </Header>
+              </div>`
+  });
+  </script>
+
+</body>
+
+</html>

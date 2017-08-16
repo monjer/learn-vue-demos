@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js Component dynamic component</title>
+  <style type="text/css">
+    .form-item{
+      margin-bottom:10px;
+    }
+    .form-item label{
+      width: 100px;
+      display: inline-block;
+    }
+    .form-item input{
+      padding:6px 10px;
+    }
+    .form-toggler span{
+      padding: 0 15px;
+      cursor: pointer;
+      color: #888;
+    }
+    .form-toggler span.active{
+      color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Vue.js Component dynamic component</h1>
+  <div id="app"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
+  <script type="text/javascript">
+  var SignInForm = Vue.component('SignInForm', {
+    template: `<div>\
+                <div class="form-item">
+                  <label for="">UserName</label>
+                  <input type="text" name="username"/>
+                </div>
+                <div class="form-item">
+                  <label for="">Password</label>
+                  <input type="password" name="password"/>
+                </div>
+                <div class="form-item">
+                  <label for=""></label>
+                  <button class="submit">Submit</button>
+                </div>
+            </div>`,
+    created:function(){
+      console.log('I am created')
+    },
+    destroyed: function(){
+      console.log('I am destroyed')
+    }
+  });
+  var SignUpForm = Vue.component('SignUpForm', {
+    template: `<div>\
+                <div class="form-item">
+                  <label for="">Email</label>
+                  <input type="text" name="email"/>
+                </div>
+                <div class="form-item">
+                  <label for="">UserName</label>
+                  <input type="text" name="username"/>
+                </div>
+                <div class="form-item">
+                  <label for="">Password</label>
+                  <input type="password" name="password"/>
+                </div>
+                <div class="form-item">
+                  <label for=""></label>
+                  <button class="submit">Submit</button>
+                </div>
+            </div>`
+  });
+  var app = new Vue({
+    el: '#app',
+    template: '<div>\
+                <p class="form-toggler">\
+                  <span ref="signInBtn" v-on:click="showForm(true )" class="active">Sign in</span>\
+                  <span ref="signupBtn" v-on:click="showForm(false)">Sign up</span>\
+                </p>\
+                <keep-alive><!--comment this to see the result-->\
+                  <component v-bind:is="curComponent"></component>\
+                </keep-alive>\
+              </div>',
+    components:{
+      signInForm: SignInForm,
+      signUpForm: SignUpForm
+    },
+    data: function(){
+      return {
+        curComponent:'signInForm'
+      }
+    },
+    methods:{
+      showForm: function(signIn){
+
+        if(signIn){
+          this.curComponent = 'signInForm'
+          this.$refs.signInBtn.className="active";
+          this.$refs.signupBtn.className="";
+        }else{
+          this.curComponent = 'signUpForm'
+          this.$refs.signInBtn.className="";
+          this.$refs.signupBtn.className="active";
+        }
+      }
+    }
+  });
+  </script>
+</body>
+
+</html>

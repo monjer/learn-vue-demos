@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js Component Props And Event</title>
+</head>
+
+<body>
+  <h1>Vue.js Component Props And Event</h1>
+  <div id="app">
+    <div>
+      <colorpicker></colorpicker>
+    </div>
+  </div>
+  <script src="https://unpkg.com/vue"></script>
+  <script type="text/javascript">
+  Vue.component('ColorItem', {
+    template: '<div><br><button v-on:click="clickHandler">{{color}}</button></div>',
+    props: ['color'],
+    methods: {
+      clickHandler: function() {
+        this.$emit('selectColor', this.$props.color);
+      }
+    }
+  });
+
+  Vue.component('colorpicker', {
+    template: '<div>\
+                    <div>Colors : {{curColor}}</div>\
+                   <ColorItem color="red" v-on:selectColor="itemSelectColor"></ColorItem>\
+                   <ColorItem color="blue" v-on:selectColor="itemSelectColor"></ColorItem>\
+                   <ColorItem color="green" v-on:selectColor="itemSelectColor"></ColorItem>\
+                 </div>',
+    data: function() {
+      return {
+        curColor: ''
+      }
+    },
+    methods: {
+      itemSelectColor: function(color) {
+        this.curColor = color;
+      }
+    }
+  });
+  var app = new Vue({
+    el: '#app'
+  });
+  </script>
+</body>
+
+</html>
