@@ -1,1 +1,1 @@
-# Vue basic component
+# Vue custom directive

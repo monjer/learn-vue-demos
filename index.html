@@ -3,75 +3,29 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Vue.js basic component</title>
+  <title>Vue.js directive</title>
 </head>
 
 <body>
-  <h1>Vue Basic Component</h1>
+  <h1>Vue directive</h1>
   <div id="app">
-    <div>
-      <div>Clock : </div>
-      <Clock></Clock>
-    </div>
-  </div>
-  <div id="app1">
-    <div>
-      <div>Clock : </div>
-      <Clock ref="clock"></Clock>
-    </div>
+    <input type="text" name="username" palceholder="Username" v-focus>
   </div>
   <script src="https://unpkg.com/vue"></script>
   <script type="text/javascript">
-  var data = {
-    time: '',
-    timer:-1
-  }
-  Vue.component('Clock', {
-    template: '<div>Date Time : {{time}}</div>',
-    data: function() {
-      return {
-        time: '',
-        timer:-1
-      };
-      // return data;
-    },
-    methods: {
-
-      stop: function() {
-        clearInterval(this.timer)
-      },
-
-      start: function() {
-        var self = this;
-        function format(num) { return ('0' + num).slice(-2) }
-        this.timer = setInterval(function() {
-          var date = new Date();
-          var dateTime = date.getFullYear() + '-' +
-            format(date.getMonth() + 1) + '-' +
-            format(date.getDate()) + ' ' +
-            format(date.getHours()) + ':' +
-            format(date.getMinutes()) + ':' +
-            format(date.getSeconds());
-          self.time = dateTime;
-        }, 1000)
+    //
+    // auto focus directive
+    //
+    Vue.directive('focus', {
+      inserted: function(el){
+        el.focus();
       }
-    },
+    });
 
-    created: function() {
-      this.start();
-    }
-  });
+    var app = new Vue({
+      el: '#app',
+    });
 
-  var app = new Vue({
-    el: '#app',
-  });
-
-  var app = new Vue({
-    el: '#app1',
-    mounted: function(){
-      this.$refs.clock.stop();
-    }
-  });
   </script>
 </body>
 
